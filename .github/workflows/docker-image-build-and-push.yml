@@ -15,7 +15,6 @@ jobs:
       IMAGE_NAME: 'fl_backend_learning_wall'
       VERSION: 'latest'
       TOKEN: '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' # ${{secrets.TOKEN}}
-      REPOSITORY: 'fl_backend_learning_wall'
 
     steps:
     - uses: actions/checkout@v2
