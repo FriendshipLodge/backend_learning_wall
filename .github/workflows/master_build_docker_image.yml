@@ -31,26 +31,26 @@ jobs:
 #          echo "##[set-env name=GOPATH;]$(dirname $GITHUB_WORKSPACE)"
 #          echo "##[add-path]$(dirname $GITHUB_WORKSPACE)/bin"
 
-   - name: Build and publish Docker Image to GitHub Packages Registry
-     uses: ckmuun/gp-docker-action@0.0.3
-     with:
-      github-token: ${{secrets.TOKEN}}
-      image-name: $IMAGE_NAME
-      extract-git-tag: true
-      dockerfile: Dockerfile
-      build-context: .
-      build-folder: .
-      pull-image: false
+#   - name: Build and publish Docker Image to GitHub Packages Registry
+#     uses: ckmuun/gp-docker-action@0.0.3
+#     with:
+#      github-token: ${{secrets.TOKEN}}
+#      image-name: $IMAGE_NAME
+#      extract-git-tag: true
+#      dockerfile: Dockerfile
+#      build-context: .
+#      build-folder: .
+#      pull-image: false
 
    - name: Login Github,Build And Push Docker Image
      run: |
-#          echo '=====登录Github====='
-#          echo ${{secrets.TOKEN}} | docker login ghcr.io -u FriendshipLodge --password-stdin
-#          echo '=====登录成功====='
-#
-#          echo '=====开始构建镜像====='
-#          docker build -t ghcr.io/FriendshipLodge/$IMAGE_NAME:$TAG_NAME .
-#          echo '=====构建镜像完成====='
+          echo '=====登录Github====='
+          echo ${{secrets.TOKEN}} | docker login ghcr.io -u FriendshipLodge --password-stdin
+          echo '=====登录成功====='
+
+          echo '=====开始构建镜像====='
+          docker build -t ghcr.io/FriendshipLodge/$IMAGE_NAME:$TAG_NAME .
+          echo '=====构建镜像完成====='
 
           echo '=====开始上传镜像====='
           docker push ghcr.io/FriendshipLodge/$IMAGE_NAME:$TAG_NAME
