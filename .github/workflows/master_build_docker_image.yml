@@ -28,8 +28,9 @@ jobs:
       extract-git-tag: true
       dockerfile: Dockerfile
       build-context: .
-      pull-image: false
       build-folder: .
+      pull-image: false
+
    - name: Build And Push Docker Image
      env:
       IMAGE_NAME: "fl_backend_learning_wall"
