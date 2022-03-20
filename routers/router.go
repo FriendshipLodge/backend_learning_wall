@@ -14,7 +14,11 @@ import (
 
 func init() {
 	//匹配控制器
+
+	beego.Router("/v1/healthy",&controllers.UserInfoController{},"Get:Healthy")
 	beego.Router("/v1/userInfo",&controllers.UserInfoController{})
 	beego.Router("/v1/allUserInfo",&controllers.UserInfoController{},"Post:GetAll")
 
 }
+
+

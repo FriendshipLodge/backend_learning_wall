@@ -9,10 +9,10 @@ type UserInfoController struct {
 	beego.Controller
 }
 
-func (u *UserInfoController) Get() {
+func (u *UserInfoController) Healthy() {
 	u.Data["json"]=models.ResponseMod{
-		Code:    "401",
-		Message: "请使用正确的请求方式",
+		Code:    "200",
+		Message: "Healthy",
 		Data:    nil,
 	}
 	u.ServeJSON()

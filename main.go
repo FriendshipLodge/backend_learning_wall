@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/plugins/cors"
-	_ "resbox_go/database"
+	//_ "resbox_go/database"
 	_ "resbox_go/routers"
 )
 

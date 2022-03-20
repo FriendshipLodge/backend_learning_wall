@@ -19,7 +19,7 @@ func init() {
 	// 参数3        对应的链接字符串
 	// 参数4(可选)  设置最大空闲连接
 	// 参数5(可选)  设置最大数据库连接 (go >= 1.2)
-	_ = orm.RegisterDataBase("default", "mysql", "root:123456@tcp(101.35.90.54:3306)/MyDB?charset=utf8", 30, 30)
+	_ = orm.RegisterDataBase("default", "mysql", "flroot:123456@tcp(101.35.90.54:3306)/flroot?charset=utf8", 30, 30)
 
 	//注册表
 	orm.RegisterModel(new(models.UserInfo))

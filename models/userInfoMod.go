@@ -29,13 +29,13 @@ func GetUserInfoById(id int) (*UserInfo,error) {
 }
 
 func GetAllUserInfo() (*[]UserInfo,error) {
-	sql := orm.NewOrm()
-	var userInfoSlice []UserInfo
-	//返回影响行数以及错误信息
-	_, err := sql.Raw("select * from user_info").QueryRows(&userInfoSlice)
-	if err!=nil {
-		fmt.Println("查询失败",err)
-		return nil, err
-	}
+	//sql := orm.NewOrm()
+	var userInfoSlice []UserInfo = []UserInfo{{1,"uuuuuuuuuiiiiiiiiiiiiddddddd","测试","password","2626@qq.com",0,0}}
+	////返回影响行数以及错误信息
+	//_, err := sql.Raw("select * from user_info").QueryRows(&userInfoSlice)
+	//if err!=nil {
+	//	fmt.Println("查询失败",err)
+	//	return nil, err
+	//}
 	return &userInfoSlice,nil
 }
