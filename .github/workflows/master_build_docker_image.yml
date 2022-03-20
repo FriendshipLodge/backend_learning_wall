@@ -17,6 +17,10 @@ jobs:
     steps:
       - name: 环境配置
       - uses: actions/checkout@v2
+      - name: go环境配置
+      - uses: actions/setup-go@v3.0.0
+        with:
+           go-version: true
       # 登录到 Github，使用 GitHub secrets 传入token，密码被加密存储在 GitHub 服务器
       - name: Build and publish Docker Image to GitHub Packages Registry
         uses: ckmuun/gp-docker-action@0.0.3
