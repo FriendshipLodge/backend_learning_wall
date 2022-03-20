@@ -33,18 +33,18 @@ jobs:
           build-context: .
           pull-image: false
           build-folder: .
-#       - name: 登录github
-#         run: |
-#           echo '=====登录Github====='
-#           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u FriendshipLodge --password-stdin
       - name: Build And Push Docker Image
+        env:
+          IMAGE_NAME: "fl_backend_learning_wall"
+          TAG_NAME: "latest"
         run: |
 #           echo '=====构建镜像====='
 #           docker build -t ghcr.io/OWNER/REPOSITORY(可不写)/IMAGE_NAME:VERSION .
 #           echo '=====构建镜像完成====='
+          #       - name: 登录github
+          #         run: |
+          #           echo '=====登录Github====='
+          #           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u FriendshipLodge --password-stdin
            echo '=====开始上传镜像====='
            docker push ghcr.io/FriendshipLodge/$IMAGE_NAME:$TAG_NAME
            echo '=====镜像上传结束====='
-        env:
-           IMAGE_NAME: "fl_backend_learning_wall"
-           TAG_NAME: "latest"
