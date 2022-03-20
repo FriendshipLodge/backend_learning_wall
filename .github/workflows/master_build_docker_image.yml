@@ -22,11 +22,10 @@ jobs:
    - uses: actions/setup-go@v3.0.0
      with:
       go-version: true
-   - name: Set GOPATH
      run: |
 #          echo "##[set-env name=GOPATH;]$(dirname $GITHUB_WORKSPACE)"
 #          echo "##[add-path]$(dirname $GITHUB_WORKSPACE)/bin"
-           echo "Set GOPATH"
+           echo 'Set GOPATH'
 #   - name: Build and publish Docker Image to GitHub Packages Registry
 #     uses: ckmuun/gp-docker-action@0.0.3
 #     with:
