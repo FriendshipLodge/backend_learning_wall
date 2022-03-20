@@ -6,8 +6,10 @@ name: Master-Build-Docker-Images
 #      - v*
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
   push:
     # 如果需要在构建前进行测试的话需要取消下面的注释和上面对应的 test 动作的注释。
@@ -31,20 +33,18 @@ jobs:
           build-context: .
           pull-image: false
           build-folder: .
-
-      env:
-          IMAGE_NAME: "fl_backend_learning_wall"
-          TAG_NAME: "laster"
-
 #       - name: 登录github
 #         run: |
 #           echo '=====登录Github====='
 #           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u FriendshipLodge --password-stdin
-       - name: Build And Push Docker Image
-         run: |
+      - name: Build And Push Docker Image
+        run: |
 #           echo '=====构建镜像====='
 #           docker build -t ghcr.io/OWNER/REPOSITORY(可不写)/IMAGE_NAME:VERSION .
 #           echo '=====构建镜像完成====='
            echo '=====开始上传镜像====='
            docker push ghcr.io/FriendshipLodge/$IMAGE_NAME:$TAG_NAME
            echo '=====镜像上传结束====='
+        env:
+           IMAGE_NAME: "fl_backend_learning_wall"
+           TAG_NAME: "latest"
