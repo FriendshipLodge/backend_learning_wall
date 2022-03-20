@@ -1,44 +1,32 @@
 name: Master-Build-Docker-Images
-
 #on:
 #  push:
 #    # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 v 开头
 #    tags:
 #      - v*
-
 on:
   push:
     branches:
       - master
-
 jobs:
   push:
     # 如果需要在构建前进行测试的话需要取消下面的注释和上面对应的 test 动作的注释。
     # needs: test
-    
     #系统镜像选择
     runs-on: ubuntu-latest
     steps:
-    
+      - name: 环境变量
+        env:
+          IMAGE_NAME: fl_backend_learning_wall
+          FIRST_NAME: Mona
       - name: 环境配置
       - uses: actions/checkout@v2
-      
       - name: go环境配置
       - uses: actions/setup-go@v3.0.0
         with:
            go-version: true
-           
       - name: docker环境配置
       - uses: docker/setup-buildx-action@v1
-      
-#         # 构建镜像，指定镜像名
-#       - name: Build Docker Images
-#         run: |
-#           echo '=====执行Dockerfile,打包镜像====='
-        
-        
-#           echo '=====镜像构建结束====='
-
       # 登录到 Github，使用 GitHub secrets 传入token，密码被加密存储在 GitHub 服务器
       - name: Build and publish Docker Image to GitHub Packages Registry
         uses: ckmuun/gp-docker-action@0.0.3
@@ -59,36 +47,15 @@ jobs:
           # pull-image: # optional, default is false
           # change to this directory
           # build-folder: # optional, default is .
-
 #       - name: 登录github
-#         run: | 
+#         run: |
 #           echo '=====登录Github====='
 #           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u FriendshipLodge --password-stdin
-        
-#       - name: Push Docker Image
-#         run: |
-#           echo '=====准备镜像====='
+       - name: Build And Push Docker Image
+         run: |
+#           echo '=====构建镜像====='
 #           docker build -t ghcr.io/OWNER/REPOSITORY(可不写)/IMAGE_NAME:VERSION .
-
-#           echo '=====开始上传mogu_gateway====='
-#           docker push moxi/mogu_gateway
-
-#           echo '=====开始上传mogu_monitor====='
-#           docker push moxi/mogu_monitor
-
-#           echo '=====开始上传mogu_picture====='
-#           docker push moxi/mogu_picture
-
-#           echo '=====开始上传mogu_search====='
-#           docker push moxi/mogu_search
-
-#           echo '=====开始上传mogu_sms====='
-#           docker push moxi/mogu_sms
-
-#           echo '=====开始上传mogu_spider====='
-#           docker push moxi/mogu_spider
-
-#           echo '=====开始上传mogu_web====='
-#           docker push moxi/mogu_web
-
-#           echo '=====镜像上传结束====='
+#           echo '=====构建镜像完成====='
+           echo '=====开始上传镜像====='
+           docker push ghcr.io/FriendshipLodge/${{image-name}}:${{extract-git-tag}}
+           echo '=====镜像上传结束====='
