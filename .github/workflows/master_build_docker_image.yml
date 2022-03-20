@@ -44,7 +44,7 @@ jobs:
         uses: ckmuun/gp-docker-action@0.0.3
         with:
           # GitHub token to push Docker image to GitHub Packages
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           # Docker Image name
           image-name: fl_backend_learning_wall
           # Docker Image tag
