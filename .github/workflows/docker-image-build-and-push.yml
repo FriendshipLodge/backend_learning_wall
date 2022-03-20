@@ -12,15 +12,16 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      $IMAGE_NAME: 'fl_backend_learning_wall'
+      IMAGE_NAME: 'fl_backend_learning_wall'
       VERSION: $(date +%s)
+      TOKEN: ${{secrets.TOKEN}}
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Login Github
       run: echo '=====µÇÂ¼Github====='
-        && echo ${{secrets.TOKEN}} | docker login ghcr.io -u FriendshipLodge --password-stdin
+        && echo $TOKEN | docker login ghcr.io -u FriendshipLodge --password-stdin
         && echo '=====³É¹¦µÇÂ¼Github=='
 
     - name: Build the Docker image
