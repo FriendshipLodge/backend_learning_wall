@@ -21,31 +21,20 @@ jobs:
       - uses: actions/setup-go@v3.0.0
         with:
            go-version: true
-      # 登录到 Github，使用 GitHub secrets 传入token，密码被加密存储在 GitHub 服务器
       - name: Build and publish Docker Image to GitHub Packages Registry
         uses: ckmuun/gp-docker-action@0.0.3
         with:
-          # GitHub token to push Docker image to GitHub Packages
           github-token: ${{ secrets.TOKEN }}
-          # Docker Image name
           image-name: fl_backend_learning_wall
-          # Docker Image tag
-          # image-tag: # optional, default is latest
-          # Extract git-tag from repository
           extract-git-tag: true
-          # Dockerfile name
           dockerfile: Dockerfile
-          # Path to build context
-          # build-context: # optional, default is .
-          # Pull the image before buiding it
-          # pull-image: # optional, default is false
-          # change to this directory
-          # build-folder: # optional, default is .
+          build-context: .
+          pull-image: false
+          build-folder: .
 
-        - name: 环境变量
-          env:
-            IMAGE_NAME: fl_backend_learning_wall
-            TAG_NAME: laster
+      env:
+          IMAGE_NAME: "fl_backend_learning_wall"
+          TAG_NAME: "laster"
 
 #       - name: 登录github
 #         run: |
