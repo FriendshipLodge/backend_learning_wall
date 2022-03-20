@@ -9,16 +9,16 @@ on:
  pull_request:
   branches: [ master ]
 jobs:
- push:
-  runs-on: ubuntu-latest
-  steps:
-   - name: 拉取项目代码
-   - uses: actions/checkout@v2
-   - name: 配置Golang环境
-   - uses: actions/setup-go@v3.0.0
-     with:
-      go-version: true
-   env:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 拉取项目代码
+    - uses: actions/checkout@v2
+    - name: 配置Golang环境
+    - uses: actions/setup-go@v3.0.0
+      with:
+          go-version: true
+    env:
       IMAGE_NAME: "fl_backend_learning_wall"
       TAG_NAME: "latest"
 #   - name: Set GOPATH
@@ -35,8 +35,8 @@ jobs:
 #      build-context: .
 #      build-folder: .
 #      pull-image: false
-   - name: Login Github,Build And Push Docker Image
-     run: |
+    - name: Login Github,Build And Push Docker Image
+      run: |
           echo '=====登录Github====='
           echo ${{secrets.TOKEN}} | docker login ghcr.io -u FriendshipLodge --password-stdin
           echo '=====登录成功====='
