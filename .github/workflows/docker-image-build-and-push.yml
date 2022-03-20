@@ -20,14 +20,14 @@ jobs:
 
     - name: Login Github
       run: echo '=====登录Github====='
-           echo ${{secrets.TOKEN}} | docker login ghcr.io -u FriendshipLodge --password-stdin
+        && echo ${{secrets.TOKEN}} | docker login ghcr.io -u FriendshipLodge --password-stdin
 
     - name: Build the Docker image
       run: echo '=====开始构建镜像====='
-           docker build -t ghcr.io/FriendshipLodge/$IMAGE_NAME:$VERSION .
-           echo '=====构建镜像完成====='
+        && docker build -t ghcr.io/FriendshipLodge/$IMAGE_NAME:$VERSION .
+        && echo '=====构建镜像完成====='
 
     - name: Push the Docker image
       run: echo '=====开始上传镜像====='
-           docker push ghcr.io/FriendshipLodge/$IMAGE_NAME:$VERSION
-           echo '=====镜像上传完成====='
+        && docker push ghcr.io/FriendshipLodge/$IMAGE_NAME:$VERSION
+        && echo '=====镜像上传完成====='
