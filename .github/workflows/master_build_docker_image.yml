@@ -14,6 +14,10 @@ jobs:
  push:
   runs-on: ubuntu-latest
   steps:
+   - name: 变量
+     env:
+      IMAGE_NAME: "fl_backend_learning_wall"
+      TAG_NAME: "latest"
    - name: 环境配置
    - uses: actions/checkout@v2
    - name: go环境配置
@@ -23,18 +27,14 @@ jobs:
    - name: Build and publish Docker Image to GitHub Packages Registry
      uses: ckmuun/gp-docker-action@0.0.3
      with:
-      github-token: ${{ secrets.TOKEN }}
+      github-token: ${{secrets.TOKEN}}
       image-name: fl_backend_learning_wall
       extract-git-tag: true
       dockerfile: Dockerfile
       build-context: .
       build-folder: .
       pull-image: false
-
    - name: Build And Push Docker Image
-     env:
-      IMAGE_NAME: "fl_backend_learning_wall"
-      TAG_NAME: "latest"
      run: |
 #           echo '=====构建镜像====='
 #           docker build -t ghcr.io/OWNER/REPOSITORY(可不写)/IMAGE_NAME:VERSION .
