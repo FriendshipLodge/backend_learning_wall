@@ -5,39 +5,36 @@ name: Master-Build-Docker-Images
 #    tags:
 #      - v*
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+ push:
+  branches: [ master ]
+ pull_request:
+  branches: [ master ]
 
 jobs:
-  push:
-    # 如果需要在构建前进行测试的话需要取消下面的注释和上面对应的 test 动作的注释。
-    # needs: test
-    #系统镜像选择
-    runs-on: ubuntu-latest
-    steps:
-      - name: 环境配置
-      - uses: actions/checkout@v2
-      - name: go环境配置
-      - uses: actions/setup-go@v3.0.0
-        with:
-            go-version: true
-      - name: Build and publish Docker Image to GitHub Packages Registry
-        uses: ckmuun/gp-docker-action@0.0.3
-        with:
-            github-token: ${{ secrets.TOKEN }}
-            image-name: fl_backend_learning_wall
-            extract-git-tag: true
-            dockerfile: Dockerfile
-            build-context: .
-            pull-image: false
-            build-folder: .
-      - name: Build And Push Docker Image
-        env:
-            IMAGE_NAME: "fl_backend_learning_wall"
-            TAG_NAME: "latest"
-        run: |
+ push:
+  runs-on: ubuntu-latest
+  steps:
+   - name: 环境配置
+   - uses: actions/checkout@v2
+   - name: go环境配置
+   - uses: actions/setup-go@v3.0.0
+     with:
+      go-version: true
+   - name: Build and publish Docker Image to GitHub Packages Registry
+     uses: ckmuun/gp-docker-action@0.0.3
+     with:
+      github-token: ${{ secrets.TOKEN }}
+      image-name: fl_backend_learning_wall
+      extract-git-tag: true
+      dockerfile: Dockerfile
+      build-context: .
+      pull-image: false
+      build-folder: .
+   - name: Build And Push Docker Image
+     env:
+      IMAGE_NAME: "fl_backend_learning_wall"
+      TAG_NAME: "latest"
+     run: |
 #           echo '=====构建镜像====='
 #           docker build -t ghcr.io/OWNER/REPOSITORY(可不写)/IMAGE_NAME:VERSION .
 #           echo '=====构建镜像完成====='
