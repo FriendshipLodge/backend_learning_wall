@@ -12,16 +12,15 @@ jobs:
  push:
   runs-on: ubuntu-latest
   steps:
-   - name: 临时变量
-     env:
-      IMAGE_NAME: "fl_backend_learning_wall"
-      TAG_NAME: "latest"
    - name: 拉取项目代码
    - uses: actions/checkout@v2
    - name: 配置Golang环境
    - uses: actions/setup-go@v3.0.0
      with:
       go-version: true
+   env:
+      IMAGE_NAME: "fl_backend_learning_wall"
+      TAG_NAME: "latest"
 #   - name: Set GOPATH
 #     run: |
 #          echo "##[set-env name=GOPATH;]$(dirname $GITHUB_WORKSPACE)"
