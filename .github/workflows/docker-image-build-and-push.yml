@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: 'fl_backend_learning_wall'
-      VERSION: $(date +%s)
+      VERSION: 'latest'
       TOKEN: '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' # ${{secrets.TOKEN}}
 
     steps:
