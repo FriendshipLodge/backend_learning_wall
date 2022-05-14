@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 8081
 
 # 启动容器时运行的命令
-CMD ["go run main.go"]
+CMD ["go run /home/ubuntu/fl_backend_learning_wall/main.go"]
