@@ -3,7 +3,9 @@ FROM golang:latest
 # 为我们的镜像设置必要的环境变量
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
+#GOOS指的是目标操作系统，支持以下操作系统
     GOOS=linux \
+#GOARCH指的是目标处理器的架构，支持一下处理器架构
     GOARCH=amd64 \
 	GOPROXY="https://goproxy.cn,direct"
 	
@@ -15,8 +17,8 @@ WORKDIR /home/ubuntu/LearningWall
 # 将代码复制到容器中
 COPY . .
 
-# 将我们的代码编译成二进制可执行文件  可执行文件名为 app
-RUN go build -o LearningWall .
+# 将我们的代码编译成二进制可执行文件  可执行文件名为 LearningWall
+RUN go build main.go
 
 # 移动到用于存放生成的二进制文件的 /dist 目录
 WORKDIR /dist
@@ -28,4 +30,4 @@ RUN cp /home/ubuntu/LearningWall/LearningWall .
 EXPOSE 8081
 
 # 启动容器时运行的命令
-CMD ["/dist/LearningWall"]
+CMD ["/dist/main"]
