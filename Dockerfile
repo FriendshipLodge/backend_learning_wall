@@ -20,14 +20,8 @@ COPY . .
 # 将我们的代码编译成二进制可执行文件  可执行文件名为 LearningWall
 RUN go build main.go
 
-# 移动到用于存放生成的二进制文件的 /dist 目录
-WORKDIR /dist
-
-# 将二进制文件从 /home/www/goWebBlog 目录复制到这里
-RUN cp /home/ubuntu/LearningWall/LearningWall .
-
 # 声明服务端口
 EXPOSE 8081
 
 # 启动容器时运行的命令
-CMD ["/dist/main"]
+CMD ["/home/ubuntu/LearningWall/main"]
