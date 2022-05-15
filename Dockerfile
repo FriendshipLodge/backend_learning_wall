@@ -22,7 +22,7 @@ RUN go build -o LearningWall .
 WORKDIR /dist
 
 # 将二进制文件从 /home/www/goWebBlog 目录复制到这里
-RUN cp /home/www/goWebBlog/app .
+RUN cp /home/ubuntu/LearningWall/LearningWall .
 
 # 声明服务端口
 EXPOSE 8081
