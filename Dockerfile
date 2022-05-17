@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:alpine as builder
 
 # 为我们的镜像设置必要的环境变量
 ENV GO111MODULE=on \
@@ -20,11 +20,11 @@ COPY . .
 # 将我们的代码编译成二进制可执行文件  可执行文件名为 main
 RUN go build main.go
 
-FROM alpine:latest
+FROM alpine:latest as prod
 
 WORKDIR /home/
-
-COPY main .
+# --from=0 指对应阶段  从0开始
+COPY --from=0 /home/LearningWall/main .
 
 # 声明服务端口
 EXPOSE 8081
