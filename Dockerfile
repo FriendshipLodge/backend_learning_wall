@@ -22,9 +22,20 @@ RUN go build main.go
 
 FROM alpine:latest as prod
 
+# 为我们的镜像设置必要的环境变量
+ENV GO111MODULE=on \
+#禁用cgo
+    CGO_ENABLED=0 \
+#GOOS指的是目标操作系统，支持以下操作系统
+    GOOS=linux \
+#GOARCH指的是目标处理器的架构，支持一下处理器架构
+    GOARCH=amd64 \
+	GOPROXY="https://goproxy.cn,direct"
+
 WORKDIR /home/
+
 # --from=0 指对应阶段  从0开始
-COPY --from=0 /home/LearningWall/main_linux_amd64.go .
+COPY --from=0 /home/LearningWall/main .
 
 # 声明服务端口
 EXPOSE 8081
