@@ -24,7 +24,7 @@ FROM alpine:latest as prod
 
 WORKDIR /home/
 # --from=0 指对应阶段  从0开始
-COPY --from=0 /home/LearningWall/main .
+COPY --from=0 /home/LearningWall/main_linux_amd64.go .
 
 # 声明服务端口
 EXPOSE 8081
