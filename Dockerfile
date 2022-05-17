@@ -12,7 +12,7 @@ ENV GO111MODULE=on \
 # 移动到工作目录：/home/ubuntu/LearningWall 这个目录 是你项目代码 放在linux上  
 # 这是我的代码跟目录 
 # 你们得修改成自己的
-WORKDIR /home/ubuntu/LearningWall
+WORKDIR /home/LearningWall
 
 # 将代码复制到容器中
 COPY . .
@@ -20,8 +20,14 @@ COPY . .
 # 将我们的代码编译成二进制可执行文件  可执行文件名为 main
 RUN go build main.go
 
+FROM alpine:latest
+
+WORKDIR /home/
+
+COPY main .
+
 # 声明服务端口
 EXPOSE 8081
 
 # 启动容器时运行的命令
-CMD ["/home/ubuntu/LearningWall/main"]
+CMD ["/home/main"]
