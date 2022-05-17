@@ -18,9 +18,6 @@ WORKDIR /home/LearningWall
 # 将代码复制到容器中
 COPY . .
 
-# 声明服务端口
-EXPOSE 8081
-
 # 将我们的代码编译成二进制可执行文件  可执行文件名为 main
 RUN go build main.go
 
@@ -29,7 +26,7 @@ FROM alpine:latest as prod
 WORKDIR /home/
 
 # --from=0 指对应阶段  从0开始
-COPY --from=0 /home/LearningWall/main .
+COPY --from=0 /home/LearningWall/ .
 
 # 声明服务端口
 EXPOSE 8081
