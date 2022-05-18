@@ -21,7 +21,7 @@ COPY . .
 # 将我们的代码编译成二进制可执行文件  可执行文件名为 main
 RUN go build main.go
 
-FROM alpine:latest as prod
+FROM scratch as prod
 
 WORKDIR /home/
 
